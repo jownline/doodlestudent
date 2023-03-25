@@ -1,7 +1,9 @@
-version: "3.8"
+ version: "3.8"
 services:
   db:
     image: mysql
+    volumes:
+      - ./src/main/resources/db/migration/:/docker-entrypoint-initdb.d/
     ports:
       - "3306:3306"
     environment:
@@ -20,3 +22,15 @@ services:
     restart: always
     ports:
       - "2525:25"
+  api:
+    container_name: api_doodle
+    image: doodleback
+    command: [""]
+    restart: always
+  front:
+    container_name: front_doodle
+    image: doodlefront
+    ports:
+      - 90:80
+    volumes:
+
